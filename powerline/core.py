@@ -8,6 +8,7 @@ import sys
 from colorscheme import Colorscheme
 from segments import Segments
 from matchers import Matchers
+from lib.dict_merge import dict_merge
 
 
 class Powerline(object):
@@ -16,7 +17,10 @@ class Powerline(object):
 
 		config_path = os.path.join(config_home, 'powerline')
 		plugin_path = os.path.realpath(os.path.dirname(__file__))
-		self.search_paths = [config_path, plugin_path]
+
+		# Search paths must be in reverse order (all paths are searched, and
+		# the configuration is merged/overwritten for each path)
+		self.search_paths = [plugin_path, config_path]
 
 		sys.path[:0] = self.search_paths
 
@@ -60,10 +64,12 @@ class Powerline(object):
 
 	def _load_json_config(self, config_file):
 		config_file += '.json'
+		config = {}
 		for path in self.search_paths:
 			config_file_path = os.path.join(path, config_file)
 			if os.path.isfile(config_file_path):
 				with open(config_file_path, 'rb') as config_file_fp:
-					return json.load(config_file_fp)
-
-		raise IOError('Config file not found in search path: {0}'.format(config_file))
+					config = dict_merge(config, json.load(config_file_fp))
+		if not config:
+			raise IOError('No config files found in search path: {0}'.format(config_file))
+		return config
