@@ -111,41 +111,18 @@ with another font on your system.</p>
 <p>This has been tested and works very well with many different coding fonts,
 but some fonts may look terrible, in which case you&#8217;ll have to use a patched
 font (see <a class="reference internal" href="fontpatching.html#font-patching"><em>Font patching</em></a> for details).</p>
-<ol class="arabic">
-<li><p class="first">Download the <a class="reference external" href="https://github.com/Lokaltog/powerline/raw/develop/powerline/fontpatcher/PowerlineSymbols.otf">latest version of PowerlineSymbols</a>.</p>
-</li>
-<li><p class="first">Move <tt class="file docutils literal"><span class="pre">PowerlineSymbols.otf</span></tt> to <tt class="file docutils literal"><span class="pre">~/.fonts</span></tt>.</p>
-</li>
-<li><p class="first">Run <tt class="docutils literal"><span class="pre">fc-cache</span> <span class="pre">-vf</span> <span class="pre">~/.fonts</span></tt> to update your font cache.</p>
-</li>
-<li><p class="first">Edit your fontconfig file, located in either <tt class="file docutils literal"><span class="pre">~/.fonts.conf</span></tt> or
-<tt class="file docutils literal"><span class="pre">~/.config/fontconfig/fonts.conf</span></tt>, depending on your fontconfig
-version.  If your fontconfig file is empty, add the entire code block
-below. If you already have a custom font configuration, only add the
-<tt class="docutils literal"><span class="pre">&lt;alias&gt;</span></tt> block to your font configuration:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE fontconfig SYSTEM &quot;fonts.dtd&quot;&gt;</span>
-
-<span class="nt">&lt;fontconfig&gt;</span>
-    <span class="nt">&lt;alias&gt;</span>
-        <span class="nt">&lt;family&gt;</span>monospace<span class="nt">&lt;/family&gt;</span>
-        <span class="nt">&lt;prefer&gt;</span>
-            <span class="nt">&lt;family&gt;</span>PowerlineSymbols<span class="nt">&lt;/family&gt;</span>
-            <span class="nt">&lt;family&gt;</span>YOUR MONOSPACE FONT HERE<span class="nt">&lt;/family&gt;</span>
-        <span class="nt">&lt;/prefer&gt;</span>
-    <span class="nt">&lt;/alias&gt;</span>
-<span class="nt">&lt;/fontconfig&gt;</span>
-</pre></div>
-</div>
-<p>Remember to replace <tt class="docutils literal"><span class="pre">YOUR</span> <span class="pre">MONOSPACE</span> <span class="pre">FONT</span> <span class="pre">HERE</span></tt> with your preferred
-coding font.</p>
-</li>
-<li><p class="first">Configure your terminal emulator or gvim to use the <tt class="docutils literal"><span class="pre">monospace</span></tt> font.</p>
-</li>
-<li><p class="first">If you still don&#8217;t see the arrow symbols, please close all instances of
-your terminal emulator or gvim. You may also have to restart X for the
-changes to take effect.</p>
-</li>
+<ol class="arabic simple">
+<li>Download the <a class="reference external" href="https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf">latest version of PowerlineSymbols</a>
+and the <a class="reference external" href="https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf">latest version of the fontconfig file</a>.</li>
+<li>Move <tt class="file docutils literal"><span class="pre">PowerlineSymbols.otf</span></tt> to <tt class="file docutils literal"><span class="pre">~/.fonts/</span></tt>.</li>
+<li>Run <tt class="docutils literal"><span class="pre">fc-cache</span> <span class="pre">-vf</span> <span class="pre">~/.fonts</span></tt> to update your font cache.</li>
+<li>Move <tt class="file docutils literal"><span class="pre">10-powerline-symbols.conf</span></tt> to either <tt class="file docutils literal"><span class="pre">~/.fonts.conf.d/</span></tt>
+or <tt class="file docutils literal"><span class="pre">~/.config/fontconfig/conf.d/</span></tt>, depending on your fontconfig
+version.</li>
+<li>If you don&#8217;t see the arrow symbols, please close all instances of your
+terminal emulator or gvim. You may also have to restart X for the changes
+to take effect. If you <em>still</em> don&#8217;t see the arrow symbols, please submit
+an issue on GitHub.</li>
 </ol>
 </div>
 <div class="section" id="os-x-and-windows">
