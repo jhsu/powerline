@@ -55,6 +55,10 @@
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>Powerline requires Python 2.7 to work.</p>
+<p>Powerline uses several special glyphs to get the arrow effect and some
+custom symbols for developers. This requires that you either have the symbol
+font or a patched font on your system. See <a class="reference internal" href="#id1">Font installation</a> for more
+details.</p>
 <div class="section" id="vim-plugin-requirements">
 <h3>Vim plugin requirements<a class="headerlink" href="#vim-plugin-requirements" title="Permalink to this headline">¶</a></h3>
 <p>The vim plugin requires a vim version with Python 2.7 support compiled in.
@@ -95,6 +99,60 @@ they provide an easy way of installing and upgrading Powerline:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://aur.archlinux.org/packages/powerline-git/">Arch Linux (AUR)</a></li>
 </ul>
+</div>
+<div class="section" id="font-installation">
+<span id="id1"></span><h3>Font installation<a class="headerlink" href="#font-installation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="linux">
+<h4>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h4>
+<p>If you&#8217;re running Linux, you may be able to avoid patching your coding font
+to get the special glyphs required by Powerline. This works by utilizing
+fontconfig&#8217;s fallback font feature, which replaces missing glyphs in a font
+with another font on your system.</p>
+<p>This has been tested and works very well with many different coding fonts,
+but some fonts may look terrible, in which case you&#8217;ll have to use a patched
+font (see <a class="reference internal" href="fontpatching.html#font-patching"><em>Font patching</em></a> for details).</p>
+<ol class="arabic">
+<li><p class="first">Download the <a class="reference external" href="https://github.com/Lokaltog/powerline/raw/develop/powerline/fontpatcher/PowerlineSymbols.otf">latest version of PowerlineSymbols</a>.</p>
+</li>
+<li><p class="first">Move <tt class="file docutils literal"><span class="pre">PowerlineSymbols.otf</span></tt> to <tt class="file docutils literal"><span class="pre">~/.fonts</span></tt>.</p>
+</li>
+<li><p class="first">Run <tt class="docutils literal"><span class="pre">fc-cache</span> <span class="pre">-vf</span> <span class="pre">~/.fonts</span></tt> to update your font cache.</p>
+</li>
+<li><p class="first">Edit your fontconfig file, located in either <tt class="file docutils literal"><span class="pre">~/.fonts.conf</span></tt> or
+<tt class="file docutils literal"><span class="pre">~/.config/fontconfig/fonts.conf</span></tt>, depending on your fontconfig
+version.  If your fontconfig file is empty, add the entire code block
+below. If you already have a custom font configuration, only add the
+<tt class="docutils literal"><span class="pre">&lt;alias&gt;</span></tt> block to your font configuration:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE fontconfig SYSTEM &quot;fonts.dtd&quot;&gt;</span>
+
+<span class="nt">&lt;fontconfig&gt;</span>
+    <span class="nt">&lt;alias&gt;</span>
+        <span class="nt">&lt;family&gt;</span>monospace<span class="nt">&lt;/family&gt;</span>
+        <span class="nt">&lt;prefer&gt;</span>
+            <span class="nt">&lt;family&gt;</span>PowerlineSymbols<span class="nt">&lt;/family&gt;</span>
+            <span class="nt">&lt;family&gt;</span>YOUR MONOSPACE FONT HERE<span class="nt">&lt;/family&gt;</span>
+        <span class="nt">&lt;/prefer&gt;</span>
+    <span class="nt">&lt;/alias&gt;</span>
+<span class="nt">&lt;/fontconfig&gt;</span>
+</pre></div>
+</div>
+<p>Remember to replace <tt class="docutils literal"><span class="pre">YOUR</span> <span class="pre">MONOSPACE</span> <span class="pre">FONT</span> <span class="pre">HERE</span></tt> with your preferred
+coding font.</p>
+</li>
+<li><p class="first">Configure your terminal emulator or gvim to use the <tt class="docutils literal"><span class="pre">monospace</span></tt> font.</p>
+</li>
+<li><p class="first">If you still don&#8217;t see the arrow symbols, please close all instances of
+your terminal emulator or gvim. You may also have to restart X for the
+changes to take effect.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="os-x-and-windows">
+<h4>OS X and Windows<a class="headerlink" href="#os-x-and-windows" title="Permalink to this headline">¶</a></h4>
+<p>You&#8217;ll have to use a patched font to use the Powerline symbols. See
+<a class="reference internal" href="fontpatching.html#font-patching"><em>Font patching</em></a> for details on font patching and pre-patched fonts.</p>
+</div>
 </div>
 </div>
 <div class="section" id="usage">
@@ -174,6 +232,11 @@ set-option -g status-fg "colour249"</pre>
 <li><a class="reference internal" href="#installation">Installation</a><ul>
 <li><a class="reference internal" href="#installing-with-pip">Installing with <tt class="docutils literal"><span class="pre">pip</span></tt></a></li>
 <li><a class="reference internal" href="#distribution-specific-packages">Distribution-specific packages</a></li>
+<li><a class="reference internal" href="#font-installation">Font installation</a><ul>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#os-x-and-windows">OS X and Windows</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
