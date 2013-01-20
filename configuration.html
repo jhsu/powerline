@@ -100,6 +100,8 @@ extensions, as well as some extension-specific options like themes and
 colorschemes.</p>
 <div class="section" id="common-configuration">
 <h3>Common configuration<a class="headerlink" href="#common-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Common configuration is a subdictionary that is a value of <tt class="docutils literal"><span class="pre">common</span></tt> key in
+<tt class="file docutils literal"><span class="pre">powerline/config.json</span></tt> file.</p>
 <dl class="docutils">
 <dt><tt class="docutils literal"><span class="pre">dividers</span></tt></dt>
 <dd><p class="first">Defines the dividers used in all Powerline extensions. This option
@@ -109,10 +111,16 @@ you use a font patched with the legacy font patcher.</p>
 background colors, while the <tt class="docutils literal"><span class="pre">soft</span></tt> dividers are used to divide
 segments with the same background color.</p>
 </dd>
+<dt><tt class="docutils literal"><span class="pre">paths</span></tt></dt>
+<dd>Defines additional paths which will be searched for modules when using
+<a class="reference internal" href="#config-themes-seg-module"><em>module segment option</em></a>. Paths defined here
+have priority when searching for modules.</dd>
 </dl>
 </div>
 <div class="section" id="extension-specific-configuration">
 <h3>Extension-specific configuration<a class="headerlink" href="#extension-specific-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Common configuration is a subdictionary that is a value of <tt class="docutils literal"><span class="pre">ext</span></tt> key in
+<tt class="file docutils literal"><span class="pre">powerline/config.json</span></tt> file.</p>
 <dl class="docutils">
 <dt><tt class="docutils literal"><span class="pre">colorscheme</span></tt></dt>
 <dd>Defines the colorscheme used for this extension.</dd>
@@ -193,6 +201,9 @@ defined in <a class="reference internal" href="#config-colorscheme-colors"><em>c
 <dl class="docutils">
 <dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
 <dd>Name of the theme.</dd>
+<dt><tt class="docutils literal"><span class="pre">default_module</span></tt></dt>
+<dd><p class="first last" id="config-themes-default-module">Python module where segments will be looked by default.</p>
+</dd>
 <dt><tt class="docutils literal"><span class="pre">segments</span></tt></dt>
 <dd><p class="first">A dict with a <tt class="docutils literal"><span class="pre">left</span></tt> and a <tt class="docutils literal"><span class="pre">right</span></tt> list, consisting of segment
 dicts. Each segment has the following options:</p>
@@ -216,7 +227,8 @@ highlighting group is defined in the <a class="reference internal" href="#config
 </dd>
 <dt><tt class="docutils literal"><span class="pre">module</span></tt></dt>
 <dd><p class="first last" id="config-themes-seg-module">Function module, only required for function segments. Defaults to
-<tt class="docutils literal"><span class="pre">core</span></tt>.</p>
+<tt class="docutils literal"><span class="pre">powerline.ext.{extension}.segments</span></tt>. Default is overriden by
+<a class="reference internal" href="#config-themes-default-module"><em>default_module theme option</em></a>.</p>
 </dd>
 <dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
 <dd><p class="first last" id="config-themes-seg-name">Function name, only required for function segments.</p>
@@ -269,10 +281,10 @@ included in all modes, <em>except</em> for the modes in this list.</dd>
 <div class="section" id="segments">
 <h2>Segments<a class="headerlink" href="#segments" title="Permalink to this headline">¶</a></h2>
 <p>Segments are written in Python, and the default segments provided with
-Powerline are located in
-<tt class="file docutils literal"><span class="pre">powerline/ext/</span><em><span class="pre">extension</span></em><span class="pre">/segments/</span><em><span class="pre">module</span></em><span class="pre">.py</span></tt>. User-defined
-segments can be defined in the corresponding path in the user&#8217;s config
-directory.</p>
+Powerline are located in <tt class="file docutils literal"><span class="pre">powerline/segments/</span><em><span class="pre">extension</span></em><span class="pre">.py</span></tt>.
+User-defined segments can be defined in any module in <tt class="docutils literal"><span class="pre">sys.path</span></tt> or
+<em class="xref std std-ref">paths common configuration option</em>, import is
+always absolute.</p>
 <p>Segments are regular Python functions, and they may accept arguments. All
 arguments should have a default value which will be used for themes that
 don&#8217;t provide an <tt class="docutils literal"><span class="pre">args</span></tt> dict.</p>
