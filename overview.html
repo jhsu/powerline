@@ -144,16 +144,29 @@ examples below.</p>
 </div>
 <div class="section" id="vim-statusline">
 <h3>Vim statusline<a class="headerlink" href="#vim-statusline" title="Permalink to this headline">¶</a></h3>
-<p>If Powerline is installed as a Python package, you can enable the vim plugin
-by adding the following line to your <tt class="docutils literal"><span class="pre">vimrc</span></tt>:</p>
-<div class="highlight-python"><pre>python from powerline.bindings.vim import source_plugin; source_plugin()</pre>
+<div class="section" id="regular-installation">
+<h4>Regular installation<a class="headerlink" href="#regular-installation" title="Permalink to this headline">¶</a></h4>
+<p><strong>The recommended way of installing Powerline is as a Python package.</strong>
+You can then enable the vim plugin by adding the following line to your
+<tt class="docutils literal"><span class="pre">vimrc</span></tt>:</p>
+<div class="highlight-vim"><div class="highlight"><pre>python from powerline.bindings.<span class="k">vim</span> import source_plugin; source_plugin<span class="p">()</span>
+</pre></div>
 </div>
 <p>If Powerline is installed somewhere other than Python&#8217;s site-packages
-directories you&#8217;ll have to source the vim plugin file with an absolute path
-to the plugin location.</p>
+directories you&#8217;ll either have to use a plugin manager like Vundle, or
+source the vim plugin file with an absolute path to the plugin location.</p>
 <p>Add the following line to your <tt class="docutils literal"><span class="pre">vimrc</span></tt>, where <tt class="docutils literal"><span class="pre">{path}</span></tt> is the path to
 the main Powerline project directory:</p>
-<div class="highlight-python"><pre>source {path}/powerline/bindings/vim/source_plugin.vim</pre>
+<div class="highlight-vim"><div class="highlight"><pre>source {<span class="nb">path</span>}<span class="sr">/powerline/</span>bindings<span class="sr">/vim/</span>plugin/source_plugin.<span class="k">vim</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vundle-installation">
+<h4>Vundle installation<a class="headerlink" href="#vundle-installation" title="Permalink to this headline">¶</a></h4>
+<p>If you&#8217;re using Vundle you can add the following line to your <tt class="docutils literal"><span class="pre">vimrc</span></tt>:</p>
+<div class="highlight-vim"><div class="highlight"><pre>Bundle <span class="s1">&#39;Lokaltog/powerline&#39;</span><span class="p">,</span> {<span class="s1">&#39;rtp&#39;</span>: <span class="s1">&#39;powerline/bindings/vim/&#39;</span>}
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="terminal-prompts">
@@ -161,18 +174,20 @@ the main Powerline project directory:</p>
 <div class="section" id="bash-prompt">
 <h4>Bash prompt<a class="headerlink" href="#bash-prompt" title="Permalink to this headline">¶</a></h4>
 <p>Add the following to your <tt class="docutils literal"><span class="pre">.bashrc</span></tt>:</p>
-<div class="highlight-python"><pre>function _update_ps1() {
-   export PS1="$(powerline-prompt)"
-}
+<div class="highlight-bash"><div class="highlight"><pre><span class="k">function </span>_update_ps1<span class="o">()</span> <span class="o">{</span>
+   <span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;$(powerline-prompt)&quot;</span>
+<span class="o">}</span>
 
-export PROMPT_COMMAND="_update_ps1"</pre>
+<span class="nb">export </span><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">&quot;_update_ps1&quot;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="zsh-prompt">
 <h4>Zsh prompt<a class="headerlink" href="#zsh-prompt" title="Permalink to this headline">¶</a></h4>
 <p>Add the following to your <tt class="docutils literal"><span class="pre">.zshrc</span></tt>:</p>
-<div class="highlight-python"><pre>setopt prompt_subst
-export PS1=\`powerline-prompt\`</pre>
+<div class="highlight-bash"><div class="highlight"><pre>setopt prompt_subst
+<span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="se">\`</span>powerline-prompt<span class="se">\`</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -218,7 +233,11 @@ set-option -g status-fg "colour249"</pre>
 </ul>
 </li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
-<li><a class="reference internal" href="#vim-statusline">Vim statusline</a></li>
+<li><a class="reference internal" href="#vim-statusline">Vim statusline</a><ul>
+<li><a class="reference internal" href="#regular-installation">Regular installation</a></li>
+<li><a class="reference internal" href="#vundle-installation">Vundle installation</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#terminal-prompts">Terminal prompts</a><ul>
 <li><a class="reference internal" href="#bash-prompt">Bash prompt</a></li>
 <li><a class="reference internal" href="#zsh-prompt">Zsh prompt</a></li>
