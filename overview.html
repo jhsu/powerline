@@ -54,22 +54,32 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Powerline requires Python 2.7 to work.</p>
+<p>Powerline requires Python 3.3 or Python 2.7 to work.</p>
 <p>Powerline uses several special glyphs to get the arrow effect and some
 custom symbols for developers. This requires that you either have the symbol
 font or a patched font on your system. See <a class="reference internal" href="#id1">Font installation</a> for more
 details.</p>
 <div class="section" id="vim-plugin-requirements">
 <h3>Vim plugin requirements<a class="headerlink" href="#vim-plugin-requirements" title="Permalink to this headline">¶</a></h3>
-<p>The vim plugin requires a vim version with Python 2.7 support compiled in.
-You can check if your vim supports Python 2 by running <tt class="docutils literal"><span class="pre">vim</span> <span class="pre">--version</span>
-<span class="pre">|</span> <span class="pre">grep</span> <span class="pre">+python</span></tt>.</p>
-<p>If your vim version doesn&#8217;t have support for Python 2, you&#8217;ll have to
-compile it with the <tt class="docutils literal"><span class="pre">--enable-pythoninterp</span></tt> flag (this also requires the
-Python headers to be installed on your system). Please consult your
+<p>The vim plugin requires a vim version with Python support compiled in.  You
+can check if your vim supports Python by running <tt class="docutils literal"><span class="pre">vim</span> <span class="pre">--version</span> <span class="pre">|</span> <span class="pre">grep</span>
+<span class="pre">+python</span></tt>.</p>
+<p>If your vim version doesn&#8217;t have support for Python, you&#8217;ll have to compile
+it with the <tt class="docutils literal"><span class="pre">--enable-python3interp</span></tt> flag (<tt class="docutils literal"><span class="pre">--enable-pythoninterp</span></tt> if
+you want Python 2 support instead). Note that this also requires the related
+Python headers to be installed on your system. Please consult your
 distribution&#8217;s documentation for details on how to compile and install
 packages.</p>
 <p>Vim version 7.3.661 or newer is recommended for performance reasons.</p>
+</div>
+<div class="section" id="additional-dependencies">
+<h3>Additional dependencies<a class="headerlink" href="#additional-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>The following Python packages are not required by all segments, but
+recommended for optimal performance:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">pygit2</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">psutil</span></tt></li>
+</ul>
 </div>
 </div>
 <div class="section" id="installation">
@@ -81,11 +91,6 @@ packages.</p>
 </div>
 <p>If you don&#8217;t have root access or don&#8217;t want to install Powerline
 system-wide, install with <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></tt> instead.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Make sure that you install the package for Python 2. For distros
-like Arch Linux you&#8217;ll have to run <tt class="docutils literal"><span class="pre">pip2</span></tt> instead of <tt class="docutils literal"><span class="pre">pip</span></tt>.</p>
-</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This project is currently unavailable on the PyPI due to a naming
@@ -220,6 +225,7 @@ set-option -g status-fg "colour249"</pre>
 <li><a class="reference internal" href="#">Overview</a><ul>
 <li><a class="reference internal" href="#requirements">Requirements</a><ul>
 <li><a class="reference internal" href="#vim-plugin-requirements">Vim plugin requirements</a></li>
+<li><a class="reference internal" href="#additional-dependencies">Additional dependencies</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#installation">Installation</a><ul>
